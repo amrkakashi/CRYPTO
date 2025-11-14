@@ -1,20 +1,8 @@
-
 // ROUTES.TSX
-import { Outlet, Navigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import Home from "./pages/Home";
-import Navbar from "./components/Navbar";
 import About from "./pages/About";
-
-const AppLayout = () => {
-  return (
-    <>
-      <Navbar />
-      <div className="min-h-screen pt-[64px]">
-        <Outlet />
-      </div>
-    </>
-  );
-};
+import AppLayout from "./layouts/AppLayout";
 
 export const routes = [
   {
@@ -23,16 +11,16 @@ export const routes = [
     children: [
       {
         index: true,
-        element: <Navigate to="/home" replace />
+        element: <Navigate to="/home" replace />,
       },
       {
         path: "home",
-        element: <Home />
+        element: <Home />,
       },
       {
         path: "about",
-        element: <About />
-      }
-    ]
-  }
+        element: <About />,
+      },
+    ],
+  },
 ];

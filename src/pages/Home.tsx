@@ -8,6 +8,8 @@ const Home = () => {
         queryFn: getData
     })
     console.log(data)
+    if(isLoading) return <div>Loading...</div>
+    if(error) return <div>Error: {error.message}</div>
   return (
     <div className="flex flex-col items-center justify-center min-h-screen">
       <h1>Home</h1>
