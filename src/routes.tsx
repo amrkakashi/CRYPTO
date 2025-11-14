@@ -1,8 +1,7 @@
-// ROUTES.TSX
 import { Navigate } from "react-router-dom";
 import Home from "./pages/Home";
-import About from "./pages/About";
 import AppLayout from "./layouts/AppLayout";
+import CoinPage from "./pages/Coin";
 
 export const routes = [
   {
@@ -14,12 +13,12 @@ export const routes = [
         element: <Navigate to="/home" replace />,
       },
       {
-        path: "home",
-        element: <Home />,
+        path: "coins/:coin",
+        element: <CoinPage />,
       },
       {
-        path: "about",
-        element: <About />,
+        path: "home",
+        element: <Home />,
       },
     ],
   },
