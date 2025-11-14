@@ -8,6 +8,7 @@ import Loading from "../components/Loading";
 import ErrorComp from "../components/ErrorComp";
 
 const CoinPage = () => {
+    const noData = "N/A";
   const { coin } = useParams<{ coin: string }>();
   const { data, isLoading, error } = useQuery<Coin>({
     queryKey: ["coin", coin],
@@ -106,7 +107,7 @@ const CoinPage = () => {
             backgroundClip: 'text',
           }}
         >
-          {data.name}
+          {data.name || noData}
         </h1>
 
         <p
@@ -117,7 +118,7 @@ const CoinPage = () => {
             border: `2px solid ${data.color}60`,
           }}
         >
-          Rank #{data.rank}
+          Rank #{data.rank || noData}
         </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
@@ -194,7 +195,7 @@ const PriceDelta = React.forwardRef<
   { period: string; value: number; color?: string }
 >(({ period, value, color }, ref) => {
   const isPositive = value >= 1;
-  const percentage = ((value - 1) * 100).toFixed(2);
+  const percentage = ((value - 1) * 100)?.toFixed(2) || "N/A";
   return (
     <div
       ref={ref}
@@ -203,7 +204,7 @@ const PriceDelta = React.forwardRef<
       <div className="relative flex flex-col items-center text-center gap-1 " style={{ color }}>
         <span className="text-gray-100 text-xs uppercase tracking-wider font-bold">{period}</span>
         <span className={`font-black text-xl ${isPositive ? "text-green-400" : "text-red-400"}`}>{isPositive ? "+" : ""}{percentage}%</span>
-        <span className="text-gray-500 text-xs">{value.toFixed(4)}x</span>
+        <span className="text-gray-500 text-xs">{value?.toFixed(4) || "N/A"}x</span>
       </div>
     </div>
   );
